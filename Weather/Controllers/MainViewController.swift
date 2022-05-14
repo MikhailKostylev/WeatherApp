@@ -8,10 +8,6 @@ final class MainViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let networkService = DataFetcherService()
     private var weatherModel: WeatherModel?
-    private let backupData = FileManager.default.urls(
-        for: .documentDirectory,
-        in: .userDomainMask
-    )[0].appendingPathComponent("WeatherData.plist")
     
     //MARK: - UI Elements
     private var headerView: MainTableViewHeader?
@@ -31,12 +27,7 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .lightBlue
         setupLocationManager()
         setupMainTableView()
-        setupTableHeader()
-        loadBackup()
-        
-        DispatchQueue.main.async {
-            self.mainTableView.reloadData()
-        }
+        setupMainTableHeader()
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,7 +52,7 @@ final class MainViewController: UIViewController {
                                forCellReuseIdentifier: DescriptionTableViewCell.identifier)
     }
     
-    private func setupTableHeader() {
+    private func setupMainTableHeader() {
         headerView = MainTableViewHeader(
             frame: CGRect(
                 x: 0,
@@ -78,30 +69,6 @@ final class MainViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-    }
-    
-    //MARK: - Backup
-    
-    private func saveBackup(data: WeatherModel) {
-        do {
-            let data = try PropertyListEncoder().encode(data)
-            try data.write(to: backupData)
-        }
-        catch let error {
-            print(error)
-        }
-    }
-    
-    private func loadBackup() {
-        guard let data = try? Data(contentsOf: backupData) else {
-            return
-        }
-        do {
-            let backup = try PropertyListDecoder().decode(WeatherModel.self, from: data)
-            weatherModel = backup
-        } catch let error {
-            print(error)
-        }
     }
 }
 
@@ -138,16 +105,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HourlyTableViewCell.identifier, for: indexPath) as? HourlyTableViewCell else { return UITableViewCell() }
             if let weatherModel = weatherModel {
                 cell.configure(with: weatherModel)
-                cell.backgroundColor = .lightBlue
             }
+            
             return cell
             
         case .daily:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyTableViewCell.identifier, for: indexPath) as? DailyTableViewCell else { return UITableViewCell() }
             if let weatherModel = weatherModel {
                 cell.configure(model: weatherModel)
-                cell.backgroundColor = .lightBlue
             }
+            
             let viewModel = cell.configureTableViewCellViewModelFor(indexPath.row)
             cell.configure(with: viewModel)
             return cell
@@ -156,8 +123,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as? InformationTableViewCell else { return UITableViewCell() }
             if let weatherModel = weatherModel {
                 cell.configure(model: weatherModel)
-                cell.backgroundColor = .lightBlue
             }
+            
             let viewModel = cell.configureTableViewCellViewModelFor(indexPath.row)
             cell.configure(with: viewModel)
             return cell
@@ -166,8 +133,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as? DescriptionTableViewCell else { return UITableViewCell() }
             if let weatherModel = weatherModel {
                 cell.configure(model: weatherModel)
-                cell.backgroundColor = .lightBlue
             }
+            
             let viewModel = cell.configureTableViewCellViewModelFor(indexPath.row)
             cell.configure(with: viewModel)
             return cell
@@ -200,12 +167,15 @@ extension MainViewController: CLLocationManagerDelegate {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        networkService.fetchWeatherData(latitude: latitude, longitude: longitude) { [weak self] (weather) in
+        networkService.fetchWeatherData(latitude: latitude, longitude: longitude) { [weak self] weather in
             guard let self = self,
                   let weather = weather else { return }
             
             self.weatherModel = weather
-            self.saveBackup(data: weather)
+            
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+            }
         }
     }
     

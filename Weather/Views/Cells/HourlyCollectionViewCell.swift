@@ -89,7 +89,7 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
             humidityLabel.bottomAnchor.constraint(equalTo: iconImageView.topAnchor),
             
             timeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            timeLabel.bottomAnchor.constraint(equalTo: humidityLabel.topAnchor),
+            timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
         ])
     }
 

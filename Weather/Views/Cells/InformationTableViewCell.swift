@@ -23,6 +23,7 @@ final class InformationTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .lightBlue
         selectionStyle = .none
         contentView.addSubview(informationLabel)
         addConstraints()

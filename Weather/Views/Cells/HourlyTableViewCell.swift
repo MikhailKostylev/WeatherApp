@@ -18,10 +18,10 @@ final class HourlyTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLa
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .lightBlue
         selectionStyle = .none
         contentView.addSubview(collectionView)
         setupCollectionView()
-        contentView.backgroundColor = .lightBlue
     }
     
     required init?(coder: NSCoder) {

@@ -71,6 +71,7 @@ final class DailyTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .lightBlue
         selectionStyle = .none
         contentView.addSubview(dayLabel)
         contentView.addSubview(lowTempLabel)
@@ -104,15 +105,15 @@ final class DailyTableViewCell: UITableViewCell {
             dayLabel.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: 5),
             dayLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            humidityLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 5),
+            humidityLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             humidityLabel.widthAnchor.constraint(equalToConstant: 44),
             humidityLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            lowTempLabel.leadingAnchor.constraint(equalTo: humidityLabel.trailingAnchor, constant: 5),
+            lowTempLabel.leadingAnchor.constraint(equalTo: humidityLabel.trailingAnchor, constant: 10),
             lowTempLabel.widthAnchor.constraint(equalToConstant: 35),
             lowTempLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            highTempLabel.leadingAnchor.constraint(equalTo: lowTempLabel.trailingAnchor, constant: 5),
+            highTempLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             highTempLabel.widthAnchor.constraint(equalToConstant: 35),
             highTempLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])

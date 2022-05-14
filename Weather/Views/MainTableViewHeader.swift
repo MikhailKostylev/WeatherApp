@@ -94,12 +94,12 @@ final class MainTableViewHeader: UIView {
             descriptionLabel.heightAnchor.constraint(equalToConstant: 50),
             descriptionLabel.topAnchor.constraint(equalTo: currentTempLabel.bottomAnchor, constant: 20),
             
-            lowTempLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            lowTempLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             lowTempLabel.widthAnchor.constraint(equalTo: self.currentTempLabel.widthAnchor, multiplier: 0.3),
             lowTempLabel.heightAnchor.constraint(equalToConstant: 50),
             lowTempLabel.trailingAnchor.constraint(equalTo: self.centerXAnchor),
             
-            highTempLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            highTempLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
             highTempLabel.widthAnchor.constraint(equalTo: self.currentTempLabel.widthAnchor, multiplier: 0.3),
             highTempLabel.heightAnchor.constraint(equalToConstant: 50),
             highTempLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor)

@@ -18,7 +18,7 @@ enum WeatherTableViewSection: Int {
     var cellHeight: CGFloat {
         switch self {
         case .hourly:
-            return CGFloat(110)
+            return CGFloat(120)
         case .daily:
             return CGFloat(50)
         case .information:
