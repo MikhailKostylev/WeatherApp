@@ -69,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3FBC6E28455BF90021D552 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1FD4F37C282EAC9400CECF50 /* AppDelegate.swift */,
+				1FD4F37E282EAC9400CECF50 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		1FD4F370282EAC9400CECF50 = {
 			isa = PBXGroup;
 			children = (
@@ -89,11 +98,13 @@
 			isa = PBXGroup;
 			children = (
 				1FD4F38A282EAC9600CECF50 /* Info.plist */,
-				1FD4F394282EAEBF00CECF50 /* Resources */,
+				1F3FBC6E28455BF90021D552 /* App */,
 				1FD4F393282EAEAD00CECF50 /* NetworkService */,
 				1FD4F392282EAEA700CECF50 /* Models */,
 				1FD4F391282EAE9E00CECF50 /* Views */,
 				1FD4F390282EAE8C00CECF50 /* Controllers */,
+				1FD4F3A4282EBF3500CECF50 /* Extensions */,
+				1FD4F394282EAEBF00CECF50 /* Resources */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -110,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				1FD4F3B4282EC9EF00CECF50 /* MainTableViewHeader.swift */,
-				1FD4F387282EAC9600CECF50 /* LaunchScreen.storyboard */,
 				1FD4F399282EB31600CECF50 /* Cells */,
 			);
 			path = Views;
@@ -139,10 +149,8 @@
 		1FD4F394282EAEBF00CECF50 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1FD4F37C282EAC9400CECF50 /* AppDelegate.swift */,
-				1FD4F37E282EAC9400CECF50 /* SceneDelegate.swift */,
 				1FD4F385282EAC9600CECF50 /* Assets.xcassets */,
-				1FD4F3A4282EBF3500CECF50 /* Extensions */,
+				1FD4F387282EAC9600CECF50 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
