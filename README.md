@@ -1,10 +1,10 @@
 # Test-Weather-App
 
-## Test task for Junior iOS Developer position
+## 🌈Test task for Junior iOS Developer position☔️
 
-### An iOS application that forecasts the weather for your current location via OpenWeather API.
+###  🌦An iOS application that forecasts the weather for your current location via OpenWeather API
 
-## Выполнено
+## Выполнено ✅
 - MVC
 - No storyboard
 - Find user locaiton with CLLocationManager
